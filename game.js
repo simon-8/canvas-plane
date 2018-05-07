@@ -9,10 +9,6 @@ var canvas = wx.createCanvas(),
     canvasWidth,
     canvasHeight;
 
-var init = function() {
-
-};
-
 // 绘制背景图片
 var bgimage = wx.createImage();
 bgimage.src = 'images/bg.jpg';
@@ -39,37 +35,37 @@ plane.onload = function() {
     plane.refresh();
 };
 plane.refresh = function() {
-    // if (x && y) {
-    //     context.drawImage(plane, x - offsetX, y - offsetY, 130, 100);
-    // } else {
-        context.drawImage(plane, 0, 0);
-    // }
+    if (mouseX && mouseY) {
+        context.drawImage(plane, mouseX, mouseY, 130, 100);
+    } else {
+        context.drawImage(plane, 0, 0, 130, 100);
+    }
 };
 
 // 显示子弹
-var bullet = wx.createImage();
-bullet.src = './images/bullet.png';
-bullet.onload = function() {
-    // bgimage.refresh();
-    var step = canvas.height / 10;
-    for (var i = 0; i < 10; i++) {
-        if (mouseX && mouseY) {
-            context.drawImage(bullet, mouseX, mouseY - offsetY, 20, 30);
-        } else {
-            context.drawImage(bullet, 0, 0, 20, 30);
-        }
-        // context.drawImage(bullet, 100, canvas.height - (i * step), 20, 30);
-    }
-    bgimage.refresh();
+// var bullet = wx.createImage();
+// bullet.src = './images/bullet.png';
+// bullet.onload = function() {
+//     // bgimage.refresh();
+//     var step = canvas.height / 10;
+//     for (var i = 0; i < 10; i++) {
+//         if (mouseX && mouseY) {
+//             context.drawImage(bullet, mouseX, mouseY - offsetY, 20, 30);
+//         } else {
+//             context.drawImage(bullet, 0, 0, 20, 30);
+//         }
+//         // context.drawImage(bullet, 100, canvas.height - (i * step), 20, 30);
+//     }
+//     bgimage.refresh();
     
-};
-bullet.send = function() {
-    var step = canvas.height / 10;
-    for (var i = 0; i < 10; i++) {
-        context.drawImage(bullet, mouseX - 35, mouseY - (i * step), 20, 30);
-    }
-    console.log(mouseX, width);
-};
+// };
+// bullet.send = function() {
+//     var step = canvas.height / 10;
+//     for (var i = 0; i < 10; i++) {
+//         context.drawImage(bullet, mouseX - 35, mouseY - (i * step), 20, 30);
+//     }
+//     console.log(mouseX, width);
+// };
 
 wx.onTouchMove(function (e) {
     mouseX = e.touches[0].pageX;
